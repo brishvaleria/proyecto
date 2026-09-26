@@ -2,192 +2,1002 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CREACIONES YM</title>
 
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+    <title>CREACIONES YM</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ICONOS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- FUENTES -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
 </head>
 
 <body>
 
-  <header>
 
-    <a class="logo" href="index.html">
-      <div class="logo">
-        CREACIONES YM
-      </div>
-    </a>
+<!-- =========================================
+     HEADER
+========================================= -->
 
-    <div class="icons">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <i class="fa-solid fa-user"></i>
-      <div class="icono-carrito" onclick="abrirCarrito()">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span id="contador-carrito">0</span>
-      </div>
-      <select id="menu" onchange="irPagina()">
-        <option value="">Selecciona una categoría</option>
-        <option value="/index.html">Inicio</option>
-        <option value="/categorias/camisas.html">Camisas</option>
-        <option value="/categorias/sudaderas.html">Sudaderas</option>
-        <option value="/categorias/pantalonesdesudaderas.html">Pantalones</option>
-        <option value="/categorias/ropainterior.html">Ropa Interior</option>
-        <option value="/categorias/ropadeportiva.html">Ropa Deportiva</option>
-      </select>
+<header>
+
+    <div class="logo">
+        <a href="/index.html">CREACIONES YM</a>
     </div>
 
-  </header>
 
-  <section class="banner">
+    <nav>
+
+        <a href="/index.html">
+            Inicio
+        </a>
+
+        <select id="menu"
+            onchange="if(this.value) window.location.href=this.value">
+
+            <option value="">
+                Categorías
+            </option>
+
+            <option value="/categorias/camisas.html">
+                Camisas
+            </option>
+
+            <option value="/categorias/conjuntos.html">
+                Conjuntos
+            </option>
+
+            <option value="/categorias/ropadepotiva.html">
+                Ropa deportiva 
+            </option>
+
+            <option value="/categorias/ropainterior.html">
+                Ropa Interior
+            </option>
+
+            <option value="/categorias/vestidos.html">
+                Vestidos
+            </option>
+
+        </select>
+
+    </nav>
+
+
+    <div class="icons">
+
+        <!-- BUSCAR -->
+
+        <div class="icono-buscador"
+            onclick="abrirBuscador()">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+        </div>
+
+
+        <!-- INICIAR SESIÓN -->
+
+        <div class="icono-usuario"
+            onclick="abrirLogin()">
+
+            <i class="fa-regular fa-user"></i>
+
+            <span>
+                Iniciar sesión
+            </span>
+
+        </div>
+
+
+        <!-- CARRITO -->
+
+        <div class="icono-carrito"
+            onclick="abrirCarrito()">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span id="contador-carrito">
+                0
+            </span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     BUSCADOR
+========================================= -->
+
+<div id="buscador" class="buscador">
+
+    <div class="buscador-contenido">
+
+        <span class="cerrar-buscador"
+            onclick="cerrarBuscador()">
+            &times;
+        </span>
+
+        <h2>
+            Buscar productos
+        </h2>
+
+        <input
+            type="text"
+            id="campo-busqueda"
+            placeholder="Escribe lo que buscas..."
+            onkeyup="buscarProducto()">
+
+        <div id="resultados-busqueda"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     INICIAR SESIÓN
+========================================= -->
+
+<div id="login" class="ventana-modal">
+
+    <div class="login-contenido">
+
+        <span class="cerrar-modal"
+            onclick="cerrarLogin()">
+            &times;
+        </span>
+
+        <h2>
+            Iniciar sesión
+        </h2>
+
+        <p class="modal-subtitulo">
+            Ingresa a tu cuenta de CREACIONES YM
+        </p>
+
+        <form onsubmit="iniciarSesion(event)">
+
+            <label>
+                Correo electrónico
+            </label>
+
+            <input
+                type="email"
+                id="correo-login"
+                placeholder="correo@email.com"
+                required>
+
+            <label>
+                Contraseña
+            </label>
+
+            <input
+                type="password"
+                id="password-login"
+                placeholder="Contraseña"
+                required>
+
+            <button type="submit"
+                class="btn-modal">
+
+                Iniciar sesión
+
+            </button>
+
+        </form>
+
+        <p id="mensaje-login"
+            class="mensaje-login">
+        </p>
+
+        <button
+            class="btn-crear-cuenta"
+            onclick="mostrarRegistro()">
+
+            Crear una cuenta
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     CREAR CUENTA
+========================================= -->
+
+<div id="registro" class="ventana-modal">
+
+    <div class="login-contenido">
+
+        <span class="cerrar-modal"
+            onclick="cerrarRegistro()">
+            &times;
+        </span>
+
+        <h2>
+            Crear cuenta
+        </h2>
+
+        <p class="modal-subtitulo">
+            Regístrate en CREACIONES YM
+        </p>
+
+        <form onsubmit="crearCuenta(event)">
+
+            <label>
+                Nombre
+            </label>
+
+            <input
+                type="text"
+                id="nombre-registro"
+                placeholder="Tu nombre"
+                required>
+
+            <label>
+                Correo electrónico
+            </label>
+
+            <input
+                type="email"
+                id="correo-registro"
+                placeholder="correo@email.com"
+                required>
+
+            <label>
+                Contraseña
+            </label>
+
+            <input
+                type="password"
+                id="password-registro"
+                placeholder="Crea una contraseña"
+                required>
+
+            <button type="submit"
+                class="btn-modal">
+
+                Crear cuenta
+
+            </button>
+
+        </form>
+
+        <p id="mensaje-registro"
+            class="mensaje-login">
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     BANNER
+========================================= -->
+
+<section class="banner">
 
     <div class="contenido">
 
-      <span>NUEVA COLECCIÓN 2026</span>
+        <span>
+            NUEVA COLECCIÓN 2026
+        </span>
 
-      <h1>CREACIONES YM</h1>
+        <h1>
+            CREACIONES YM
+        </h1>
 
-      <p>
-        Moda para cada estilo.
-      </p>
+        <p>
+            Moda para cada estilo.
+        </p>
 
-      <a href="#" class="btn">
-        COMPRAR AHORA
-      </a>
+        <a href="#coleccion-nueva"
+            class="btn">
+
+            COMPRAR AHORA
+
+        </a>
 
     </div>
 
-  </section>
+</section>
 
-  <section class="categorias">
 
-    <h2>CATEGORÍAS</h2>
+
+<!-- =========================================
+     CATEGORÍAS
+========================================= -->
+
+<section class="categorias">
+
+    <h2>
+        CATEGORÍAS
+    </h2>
 
     <div class="grid">
 
-      <a class="categorias-seccion" href="/categorias/camisas.html">
-        <div class="card">
-          <img src="/IMG/CAMISAS DE MUJERES .jpg">
-          <div class="nombre-categorias">
-            <h3>CAMISAS</h3>
-          </div>
-        </div>
-      </a>
 
-      <a class="categorias-seccion" href="/categorias/sudaderas.html">
-        <div class="card">
-          <img src="/IMG/ropa deportiva .jpg">
-          <div class="nombre-categorias">
-            <h3>SUDADERAS</h3>
-          </div>
-        </div>
-      </a>
+        <!-- CAMISAS -->
 
-      <a class="categorias-seccion" href="/categorias/pantalonesdesudaderas.html">
+        <a class="categorias-seccion"
+            href="/categorias/camisas.html">
 
-        <div class="card">
-          <img src="/IMG/panatlones de sudaderas .jpg">
-          <div class="nombre-categorias">
-            <h3>PANTALONES</h3>
-          </div>
-        </div>
-      </a>
+            <div class="card">
 
-      <a class="categorias-seccion" href="/categorias/ropainterior.html">
-        <div class="card">
-          <img src="/IMG/ropa interior .jpg">
-          <div class="nombre-categorias">
-            <h3>ROPA INTERIOR</h3>
-          </div>
-        </div>
-      </a>
+                <img src="/IMG/camisas 1.jpg"
+                    alt="Camisas">
 
-      <a class="categorias-seccion" href="/categorias/vestido.html">
-        <div class="card">
-          <img src="/IMG/vestido .jpg">
-          <div class="nombre-categorias">
-            <h3>VESTIDOS</h3>
-          </div>
-        </div>
-      </a>
+                <div class="nombre-categorias">
 
-      <div class="producto">
+                    <h3>
+                        CAMISAS
+                    </h3>
 
-        <img src="img/camisa1.jpg">
+                </div>
 
-        <h3>Camisa Rosa</h3>
+            </div>
 
-        <p>$45.000</p>
+        </a>
 
-        <button onclick="agregarAlCarrito('Camisa Rosa', 45000)">
-          Agregar al carrito
-        </button>
 
-      </div>
-      
+
+        <!-- ROPA DEPORTIVA -->
+
+        <a class="categorias-seccion"
+            href="/categorias/ropadepotiva.html">
+
+            <div class="card">
+
+                <img src="/IMG/ropa deportiva 1.jpg"
+                    alt="Ropa deportiva">
+
+                <div class="nombre-categorias">
+
+                    <h3>
+                        ROPA DEPORTIVA
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- CONJUNTOS -->
+
+        <a class="categorias-seccion"
+            href="/categorias/conjuntos.html">
+
+            <div class="card">
+
+                <img src="/IMG/conjuntos .jpg"
+                    alt="Conjuntos">
+
+                <div class="nombre-categorias">
+
+                    <h3>
+                        CONJUNTOS
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- ROPA INTERIOR -->
+
+        <a class="categorias-seccion"
+            href="/categorias/ropainterior.html">
+
+            <div class="card">
+
+                <img src="/IMG/ropa interior .jpg"
+                    alt="Ropa interior">
+
+                <div class="nombre-categorias">
+
+                    <h3>
+                        ROPA INTERIOR
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- VESTIDOS -->
+
+        <a class="categorias-seccion"
+            href="/categorias/vestidos.html">
+
+            <div class="card">
+
+                <img src="/IMG/vestido 1.jpg"
+                    alt="Vestidos">
+
+                <div class="nombre-categorias">
+
+                    <h3>
+                        VESTIDOS
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </a>
+
     </div>
 
+</section>
 
 
 
+<!-- =========================================
+     NUEVA COLECCIÓN
+========================================= -->
+
+<section class="coleccion-nueva"
+    id="coleccion-nueva">
+
+    <h2>
+        NUEVA COLECCIÓN
+    </h2>
+
+    <p class="coleccion-descripcion">
+        Descubre nuestras prendas más recientes.
+    </p>
+
+    <div class="productos-grid">
+
+
+        <div class="producto">
+
+            <img src="/IMG/vestido 1.jpg"
+                alt="Vestido blanco de seda">
+
+            <div class="producto-info">
+
+                <h3>
+                    Vestido blanco de seda
+                </h3>
+
+                <p class="precio">
+                    $60.000
+                </p>
+
+                <button
+                    class="btn-producto"
+                    onclick="agregarAlCarrito('Vestido blanco de seda', 60000)">
+
+                    Agregar al carrito
+
+                </button>
+
+            </div>
+
+        </div>
 
 
 
+        <div class="producto">
 
-  </section>
+            <img src="/IMG/conjuntos categorias  (3).jpg"
+                alt="Conjunto">
+
+            <div class="producto-info">
+
+                <h3>
+                    Conjunto
+                </h3>
+
+                <p class="precio">
+                    $60.000
+                </p>
+
+                <button
+                    class="btn-producto"
+                    onclick="agregarAlCarrito('Conjunto', 60000)">
+
+                    Agregar al carrito
+
+                </button>
+
+            </div>
+
+        </div>
 
 
 
+        <div class="producto">
+
+            <img src="/IMG/camisas categorias  (3).jpg"
+                alt="Camisa blanca Manga Larga">
+
+            <div class="producto-info">
+
+                <h3>
+                    Camisa blanca Manga Larga
+                </h3>
+
+                <p class="precio">
+                    $45.000
+                </p>
+
+                <button
+                    class="btn-producto"
+                    onclick="agregarAlCarrito('Camisa blanca Manga Larga', 45000)">
+
+                    Agregar al carrito
+
+                </button>
+
+            </div>
+
+        </div>
 
 
-  </section>
 
-  <footer>
+        <div class="producto">
 
-    <h2>CREACIONES YM</h2>
+            <img src="/IMG/ropa deportiva categoria  (1).jpg"
+                alt="Ropa deportiva">
 
-    <p>Instagram: @atelierym</p>
+            <div class="producto-info">
 
-    <p>Facebook: CREACIONES YM</p>
+                <h3>
+                    Ropa deportiva
+                </h3>
 
-    <p>Correo: creacionesym98@gmail.com</p>
+                <p class="precio">
+                    $55.000
+                </p>
 
-    <p>© 2026 CREACIONES YM</p>
+                <button
+                    class="btn-producto"
+                    onclick="agregarAlCarrito('Ropa deportiva', 55000)">
 
-  </footer>
+                    Agregar al carrito
 
-  <div id="carrito" class="carrito">
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     DESTACADA
+========================================= -->
+
+<section class="destacada">
+
+    <div class="destacada-contenido">
+
+        <h2>
+            ESTILO QUE TE REPRESENTA
+        </h2>
+
+        <p>
+            Encuentra prendas pensadas para acompañar
+            cada momento de tu estilo.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     PRODUCTOS DESTACADOS
+========================================= -->
+
+<section class="productos-destacados">
+
+    <h2>
+        PRODUCTOS DESTACADOS
+    </h2>
+
+    <div class="productos-grid">
+
+
+        <div class="producto">
+
+            <img src="/IMG/vestido 1.jpg"
+                alt="Vestido blanco de seda">
+
+            <div class="producto-info">
+
+                <h3>
+                    Vestido blanco de seda
+                </h3>
+
+                <p class="precio">
+                    $60.000
+                </p>
+
+                <button
+                    class="btn-producto"
+                    onclick="agregarAlCarrito('Vestido blanco de seda', 60000)">
+
+                    Agregar al carrito
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="producto">
+
+            <img src="/IMG/conjuntos categorias  (3).jpg"
+                alt="Conjunto">
+
+            <div class="producto-info">
+
+                <h3>
+                    Conjunto
+                </h3>
+
+                <p class="precio">
+                    $60.000
+                </p>
+
+                <button
+                    class="btn-producto"
+                    onclick="agregarAlCarrito('Conjunto', 60000)">
+
+                    Agregar al carrito
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="producto">
+
+            <img src="/IMG/VESTIDO CATEGORIA.jpg"
+                alt="Vestido blanco">
+
+            <div class="producto-info">
+
+                <h3>
+                    Vestido blanco
+                </h3>
+
+                <p class="precio">
+                    $80.000
+                </p>
+
+                <button
+                    class="btn-producto"
+                    onclick="agregarAlCarrito('Vestido blanco', 80000)">
+
+                    Agregar al carrito
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="producto">
+
+            <img src="/IMG/ropa deportiva categoria  (1).jpg"
+                alt="Ropa deportiva">
+
+            <div class="producto-info">
+
+                <h3>
+                    Ropa Deportiva
+                </h3>
+
+                <p class="precio">
+                    $45.000
+                </p>
+
+                <button
+                    class="btn-producto"
+                    onclick="agregarAlCarrito('Ropa Deportiva', 45000)">
+
+                    Agregar al carrito
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     CARRITO
+========================================= -->
+
+<div id="carrito"
+    class="carrito">
 
     <div class="carrito-contenido">
 
-      <span class="cerrar-carrito" onclick="cerrarCarrito()">&times;</span>
+        <span class="cerrar-carrito"
+            onclick="cerrarCarrito()">
+            &times;
+        </span>
 
-      <h2>Mi carrito</h2>
+        <h2>
+            Mi carrito
+        </h2>
 
-      <div id="productos-carrito">
-        <p>Tu carrito está vacío.</p>
-      </div>
+        <div id="productos-carrito">
 
-      <div class="total-carrito">
-        <strong>Total:</strong>
-        <span id="total">$0</span>
-      </div>
+            <p>
+                Tu carrito está vacío.
+            </p>
 
-      <button class="btn-comprar" onclick="finalizarCompra()">
-        Comprar ahora
-      </button>
+        </div>
+
+        <div class="total-carrito">
+
+            <strong>
+                Total:
+            </strong>
+
+            <span id="total">
+                $0
+            </span>
+
+        </div>
+
+        <button
+            class="btn-comprar"
+            onclick="finalizarCompra()">
+
+            Comprar ahora
+
+        </button>
 
     </div>
 
-  </div>
+</div>
 
-</body>
+
+
+<!-- =========================================
+     MÉTODOS DE PAGO
+========================================= -->
+
+<div id="pago"
+    class="ventana-modal">
+
+    <div class="pago-contenido">
+
+        <span class="cerrar-modal"
+            onclick="cerrarPago()">
+            &times;
+        </span>
+
+        <h2>
+            Método de pago
+        </h2>
+
+        <p class="modal-subtitulo">
+            Selecciona cómo deseas pagar tu pedido.
+        </p>
+
+        <div class="metodos-pago">
+
+            <button
+                class="metodo-pago"
+                onclick="seleccionarPago('Nequi')">
+
+                <i class="fa-solid fa-mobile-screen-button"></i>
+
+                <span>
+                    Nequi
+                </span>
+
+            </button>
+
+
+            <button
+                class="metodo-pago"
+                onclick="seleccionarPago('Daviplata')">
+
+                <i class="fa-solid fa-wallet"></i>
+
+                <span>
+                    Daviplata
+                </span>
+
+            </button>
+
+        </div>
+
+        <div id="informacion-pago"
+            class="informacion-pago">
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     MINI CHAT
+========================================= -->
+
+<div class="mini-chat">
+
+    <button
+        class="boton-chat"
+        onclick="toggleChat()">
+
+        <i class="fa-solid fa-comments"></i>
+
+    </button>
+
+
+    <div id="chat-contenido"
+        class="chat-contenido">
+
+        <div class="chat-titulo">
+
+            <div>
+
+                <strong>
+                    CREACIONES YM
+                </strong>
+
+                <small>
+                    ¿Necesitas ayuda?
+                </small>
+
+            </div>
+
+            <span onclick="toggleChat()">
+                &times;
+            </span>
+
+        </div>
+
+
+        <div class="chat-mensaje">
+
+            Hola 👋
+            <br>
+            ¿En qué podemos ayudarte?
+
+        </div>
+
+
+        <!-- WHATSAPP -->
+
+        <a
+            href="https://wa.me/573249829483?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20un%20producto%20de%20CREACIONES%20YM."
+            target="_blank"
+            class="chat-opcion">
+
+            <i class="fa-brands fa-whatsapp"></i>
+
+            WhatsApp
+
+        </a>
+
+
+        <!-- CORREO -->
+
+        <a
+            href="mailto:creacionesym98@gmail.com"
+            class="chat-opcion">
+
+            <i class="fa-solid fa-envelope"></i>
+
+            Correo electrónico
+
+        </a>
+
+
+        <!-- AYUDA -->
+
+        <button
+            onclick="mostrarAyuda()"
+            class="chat-opcion">
+
+            <i class="fa-solid fa-circle-question"></i>
+
+            Ayuda con mi pedido
+
+        </button>
+
+
+        <div id="chat-ayuda"
+            class="chat-ayuda">
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <h2>
+        CREACIONES YM
+    </h2>
+
+    <p>
+        Instagram: @atelierym
+    </p>
+
+    <p>
+        Facebook: CREACIONES YM
+    </p>
+
+    <p>
+        Correo: creacionesym98@gmail.com
+    </p>
+
+    <p>
+        © 2026 CREACIONES YM
+    </p>
+
+</footer>
+
+
 
 <script src="/script.js"></script>
+
+</body>
 
 </html>
